@@ -1,6 +1,8 @@
 # sunFinance
 API test assignment
 
+Task description in the BE_developer_task.pdf
+
 Realized with Symfony 5.2, Api platform bundle and Docker (php8, posgresql13, nginx)
 
 After cloning there is the docker folder in the root of the project. 
