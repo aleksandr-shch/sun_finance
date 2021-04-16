@@ -1,0 +1,35 @@
+version: '3.4'
+services:
+  postgres:
+    image: postgres
+    ports:
+      - '5433:5432'
+    container_name: 'postgresql'
+    working_dir: /app
+    restart: always
+    environment:
+      POSTGRES_DB: 'sun_finance'
+      POSTGRES_USER: 'sun_finance'
+      POSTGRES_PASSWORD: 'sun_finance'
+    volumes:
+      - ./data/dump:/app/dump
+      - ./data/postgresql:/var/lib/postgresql/data
+  php:
+    build: php-fpm
+    ports:
+      - '9002:9000'
+    volumes:
+      - ../:/var/www/symfony:cached
+      - ./logs/symfony:/var/www/symfony/var/logs:cached
+    links:
+      - postgres
+  nginx:
+    build: nginx
+    ports:
+      - '8080:80'
+    links:
+      - php
+    volumes_from:
+      - php
+    volumes:
+      - ./logs/nginx/:/var/log/nginx:cached
