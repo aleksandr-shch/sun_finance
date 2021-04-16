@@ -19,4 +19,6 @@ To run migration - `docker-compose run php bin/console doctrine:migrations:migra
 
 Fixtures to fill the DB - `docker-compose run php bin/console doctrine:fixtures:load`
 
+Docs - `/api/docs`
+
 Beginning tests - `docker-compose run php bin/phpunit`
